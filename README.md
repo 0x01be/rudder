@@ -1,6 +1,6 @@
 # Rudder
 
-Faciliate learning, sharing and teaching ASIC design using open tools and technologies:
+Learn, share and teach ASIC design using open tools and technologies:
 
  - [magic](http://opencircuitdesign.com/magic/)
  - [qflow](http://opencircuitdesign.com/qflow/)
@@ -45,7 +45,7 @@ docker run -v pdk:/opt/pdk 0x01be/openpdks:timedwards sh -c "mv /opt/skywater-pd
 ```
 docker volume rm caravel
 docker volume create caravel
-docker run -v caravel:/opt/caravel alpine  sh -c "apk add git make gzip && git clone https://github.com/efabless/caravel.git && adduser -D -u 1000 xpra && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
+docker run -v caravel:/opt/caravel alpine  sh -c "apk add git make gzip && git clone https://github.com/efabless/caravel.git /opt/caravel && adduser -D -u 1000 xpra && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
 ```
 
 ### View in Magic
@@ -56,6 +56,8 @@ docker run --rm --name magic -ti -p 10000:10000 -v pdk:/opt/pdk -v caravel:/home
 
 Magic should be available at http://localhost:10000/
 
+![Magic screenshot](screenshots/magic.png)
+
 ### View in KLayout
 
 ```
@@ -63,6 +65,8 @@ docker run --rm --name klayout -ti -p 10001:10000 -v pdk:/opt/pdk -v caravel:/ho
 ```
 
 Klayout should be available at http://localhost:10001/
+
+![KLayout screenshot](screenshots/klayout.png)
 
 ### Run DRC, consistency tests and the eFabless precheck
 
