@@ -1,0 +1,4 @@
+#!/bin/bash
+
+klayout -nn ${PDK_ROOT}/sky130A/libs.tech/klayout/sky130A.lyt ${TARGET_DIR}/gds/caravel.gds
+

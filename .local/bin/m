@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export MAGIC_DIR=${WORKSPACE}/caravel/mag
+cd ${MAGIC_DIR}
+magic -T ${MAGIC_TECH} ${MAGIC_DIR}/caravel.mag
+

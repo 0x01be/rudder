@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd ${WORKSPACE}/precheck && python3 open_mpw_prechecker.py -t ${TARGET_DIR} -o ${OUT_DIR}
+
