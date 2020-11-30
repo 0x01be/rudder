@@ -10,6 +10,7 @@ Learn, share and teach ASIC design using open tools and technologies:
  - [netgen](http://opencircuitdesign.com/netgen/)
  - [openroad](https://theopenroadproject.org/)
  - [klayout](https://www.klayout.de/)
+ - [xschem](http://repo.hu/projects/xschem/)
  - [gtkwave](http://gtkwave.sourceforge.net/)
  - [yosys](http://www.clifford.at/yosys/)
  - [verilator](https://www.veripool.org/wiki/verilator)

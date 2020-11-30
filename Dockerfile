@@ -65,13 +65,13 @@ COPY --from=0x01be/qflow:xpra /opt/qflow/ /opt/qflow/
 COPY --from=0x01be/magic:xpra /opt/magic/ /opt/magic/
 COPY --from=0x01be/klayout:xpra /opt/klayout/ /opt/klayout/
 COPY --from=0x01be/openroad:xpra /opt/openroad/ /opt/openroad/
+COPY --from=0x01be/xschem:xpra /opt/xschem/ /opt/xschem/
 COPY --from=0x01be/opendp /opt/opendp/ /opt/opendp/
 COPY --from=0x01be/ops /opt/ops/ /opt/ops/
 COPY --from=0x01be/padring /opt/padring/ /opt/padring/
 COPY --from=0x01be/replace /opt/replace/ /opt/replace/
 COPY --from=0x01be/triton /opt/triton/ /opt/triton/
 COPY --from=0x01be/yosys /opt/yosys/ /opt/yosys/
-COPY --from=0x01be/ghdl /opt/ghdl/ /opt/ghdl/
 COPY --from=0x01be/iverilog /opt/iverilog/ /opt/iverilog/
 COPY --from=0x01be/verilator /opt/verilator/ /opt/verilator/
 COPY ./.local/ ${WORKSPACE}/.local/
@@ -82,7 +82,7 @@ ENV PDK_ROOT=/opt/pdk
 ENV TARGET_DIR=${WORKSPACE}/caravel \
     OUT_DIR=${WORKSPACE}/caravel \
     DESIGN_NAME=caravel \
-    SUB_DESIGN_NAME=mprj \
+    SUB_DESIGN_NAME=user_project_wrapper \
     SCRIPTS_ROOT=${WORKSPACE}/precheck \
     PDKPATH=${PDK_ROOT}/sky130A \
     MAGIC_MAGICRC=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc \
@@ -104,7 +104,7 @@ RUN mkdir -p /home/ag/pdks /home/xrex/usr/devel/pdks/test &&\
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
-ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/ghdl/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:${WORKSPACE}/.local/bin/ \
+ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/ghdl/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin/:${WORKSPACE}/.local/bin/ \
     PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/klayout/lib/python3.8/site-packages/ \
     DOCKER_HOST=tcp://docker:2375 \
     COMMAND="xfce4-terminal"
