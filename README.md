@@ -40,7 +40,7 @@ docker pull 0x01be/rudder
 docker pull 0x01be/openpdks:timedwards
 docker volume rm pdk
 docker volume create pdk
-docker run -v pdk:/opt/pdk 0x01be/openpdks:timedwards sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
+docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:timedwards sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
 ```
 
 ### Prepare or reset [Harness](https://github.com/efabless/caravel/)
@@ -48,7 +48,7 @@ docker run -v pdk:/opt/pdk 0x01be/openpdks:timedwards sh -c "mv /opt/skywater-pd
 ```
 docker volume rm caravel
 docker volume create caravel
-docker run -v caravel:/opt/caravel alpine  sh -c "apk add git make gzip && git clone https://github.com/efabless/caravel.git /opt/caravel && adduser -D -u 1000 xpra && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
+docker run --rm -ti -v caravel:/opt/caravel alpine  sh -c "apk add git make gzip && git clone --recursive https://github.com/efabless/caravel.git /opt/caravel && adduser -D -u 1000 xpra && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
 ```
 
 ### View in Magic
