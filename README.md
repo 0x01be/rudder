@@ -2,6 +2,8 @@
 
 Learn, share and teach ASIC design using open tools and technologies:
 
+ - [skywater-pdk](https://skywater-pdk.readthedocs.io/)
+ - [open_pdks](http://www.opencircuitdesign.com/open_pdks/i)
  - [magic](http://opencircuitdesign.com/magic/)
  - [qflow](http://opencircuitdesign.com/qflow/)
  - [netgen](http://opencircuitdesign.com/netgen/)
@@ -25,13 +27,13 @@ Learn, share and teach ASIC design using open tools and technologies:
 
 ## Usage
 
-### Install/update to the latest version
+### Install or update
 
 ```
 docker pull 0x01be/rudder
 ```
 
-### Prepare/update/reset PDK
+### Prepare or reset PDK
 
 ```
 docker pull 0x01be/openpdks:timedwards
@@ -40,7 +42,7 @@ docker volume create pdk
 docker run -v pdk:/opt/pdk 0x01be/openpdks:timedwards sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
 ```
 
-### Prepare/update/reset Caravel
+### Prepare or reset Harness
 
 ```
 docker volume rm caravel
@@ -68,7 +70,7 @@ Klayout should be available at http://localhost:10001/
 
 ![KLayout screenshot](screenshots/klayout.png)
 
-### Run DRC, consistency tests and the eFabless precheck
+### Run DRC, consistency tests and the [eFabless precheck](https://github.com/efabless/open_mpw_precheck)
 
 ```
 docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash -c "drc && consistency && check"
