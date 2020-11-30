@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd ${TARGET_DIR}/mag && magic -noconsole -dnull -T ${MAGIC_TECH} -rcfile ${SCRIPTS_ROOT}/consistency_checks/magic_list_instances.tcl </dev/null && magic -noconsole -dnull -T ${MAGIC_TECH} -rcfile ${WORKSPACE}/precheck/consistency_checks/magic_list_subinstances.tcl </dev/null
+cd ${TARGET_DIR}/mag && magic -noconsole -dnull -T ${MAGIC_TECH} -rcfile ${SCRIPTS_ROOT}/consistency_checks/magic_list_instances.tcl </dev/null && magic -noconsole -dnull -T ${MAGIC_TECH} -rcfile ${SCRIPTS_ROOT}/consistency_checks/magic_list_subinstances.tcl </dev/null
 
