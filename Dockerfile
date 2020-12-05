@@ -62,7 +62,6 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
 COPY --from=0x01be/gtkwave:xpra /opt/gtkwave/ /opt/gtkwave/
 COPY --from=0x01be/netgen:xpra /opt/netgen/ /opt/netgen/
 COPY --from=0x01be/qflow:xpra /opt/qflow/ /opt/qflow/
-COPY --from=0x01be/magic:xpra /opt/magic/ /opt/magic/
 COPY --from=0x01be/klayout:xpra /opt/klayout/ /opt/klayout/
 COPY --from=0x01be/openroad:xpra /opt/openroad/ /opt/openroad/
 COPY --from=0x01be/xschem:xpra /opt/xschem/ /opt/xschem/
@@ -74,6 +73,7 @@ COPY --from=0x01be/triton /opt/triton/ /opt/triton/
 COPY --from=0x01be/yosys /opt/yosys/ /opt/yosys/
 COPY --from=0x01be/iverilog /opt/iverilog/ /opt/iverilog/
 COPY --from=0x01be/verilator /opt/verilator/ /opt/verilator/
+COPY --from=0x01be/magic:xpra-threads /opt/magic/ /opt/magic/
 COPY ./.local/ ${WORKSPACE}/.local/
 COPY ./.config/ ${WORKSPACE}/.config/
 
