@@ -1,3 +1,19 @@
+FROM 0x01be/gtkwave:xpra as gtkwave
+FROM 0x01be/netgen:xpra as netgen
+FROM 0x01be/qflow:xpra as qflow
+FROM 0x01be/klayout:xpra as klayout
+FROM 0x01be/openroad:xpra as openroad
+FROM 0x01be/xschem:xpra as xschem
+FROM 0x01be/opendp as opendp
+FROM 0x01be/ops as ops
+FROM 0x01be/padring as padring
+FROM 0x01be/replace as replace
+FROM 0x01be/triton as triton
+FROM 0x01be/yosys as yosys
+FROM 0x01be/iverilog as iverilog
+FROM 0x01be/verilator as verilator
+FROM 0x01be/magic:xpra-threads as magic
+
 FROM 0x01be/xpra
 
 RUN apk add --no-cache --virtual rudder-runtime-dependencies \
@@ -59,21 +75,21 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
     pip install -U pip pudb strsimpy
 
-COPY --from=0x01be/gtkwave:xpra /opt/gtkwave/ /opt/gtkwave/
-COPY --from=0x01be/netgen:xpra /opt/netgen/ /opt/netgen/
-COPY --from=0x01be/qflow:xpra /opt/qflow/ /opt/qflow/
-COPY --from=0x01be/klayout:xpra /opt/klayout/ /opt/klayout/
-COPY --from=0x01be/openroad:xpra /opt/openroad/ /opt/openroad/
-COPY --from=0x01be/xschem:xpra /opt/xschem/ /opt/xschem/
-COPY --from=0x01be/opendp /opt/opendp/ /opt/opendp/
-COPY --from=0x01be/ops /opt/ops/ /opt/ops/
-COPY --from=0x01be/padring /opt/padring/ /opt/padring/
-COPY --from=0x01be/replace /opt/replace/ /opt/replace/
-COPY --from=0x01be/triton /opt/triton/ /opt/triton/
-COPY --from=0x01be/yosys /opt/yosys/ /opt/yosys/
-COPY --from=0x01be/iverilog /opt/iverilog/ /opt/iverilog/
-COPY --from=0x01be/verilator /opt/verilator/ /opt/verilator/
-COPY --from=0x01be/magic:xpra-threads /opt/magic/ /opt/magic/
+COPY --from=gtkwave /opt/gtkwave/ /opt/gtkwave/
+COPY --from=netgen /opt/netgen/ /opt/netgen/
+COPY --from=qflow /opt/qflow/ /opt/qflow/
+COPY --from=klayout /opt/klayout/ /opt/klayout/
+COPY --from=openroad /opt/openroad/ /opt/openroad/
+COPY --from=xschem /opt/xschem/ /opt/xschem/
+COPY --from=opendp /opt/opendp/ /opt/opendp/
+COPY --from=ops /opt/ops/ /opt/ops/
+COPY --from=padring /opt/padring/ /opt/padring/
+COPY --from=replace /opt/replace/ /opt/replace/
+COPY --from=triton /opt/triton/ /opt/triton/
+COPY --from=yosys /opt/yosys/ /opt/yosys/
+COPY --from=iverilog /opt/iverilog/ /opt/iverilog/
+COPY --from=verilator /opt/verilator/ /opt/verilator/
+COPY --from=magic /opt/magic/ /opt/magic/
 COPY ./.local/ ${WORKSPACE}/.local/
 COPY ./.config/ ${WORKSPACE}/.config/
 
@@ -95,12 +111,6 @@ RUN git clone --depth 1 --branch  main   https://github.com/efabless/open_mpw_pr
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd &&\
     rm -rf /tmp/*
-
-# Fix weird references
-RUN mkdir -p /home/ag/pdks /home/xrex/usr/devel/pdks/test &&\
-    ln -s ${PDK_ROOT}/sky130A /home/ag/pdks/sky130A &&\
-    ln -s ${PDK_ROOT}/sky130A /home/xrex/usr/devel/pdks/sky130A &&\
-    ln -s ${PDK_ROOT}/sky130A /home/xrex/usr/devel/pdks/test/sky130A
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
