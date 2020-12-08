@@ -41,11 +41,13 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     py3-xlsxwriter \
     py3-pip \
     ruby-libs \
+    ncurses \
     tcsh \
     tcl-dev \
     tk-dev \
     m4 \
     glu \
+    gmp \
     pcre \
     libgomp \
     libgnat \
@@ -57,11 +59,15 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     libxpm \
     libxt \
     gettext \
+    qt5-qtbase \
     qt5-qtbase-x11 \
+    qt5-qtdeclarative \
     qt5-qtxmlpatterns \
     qt5-qtsvg \
     qt5-qttools \
+    qt5-wayland \
     mesa-dri-swrast \
+    spdlog \
     gdb \
     g++ \
     libtool &&\
@@ -71,7 +77,8 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
     geany \
     py3-pandas \
-    ngspice &&\
+    ngspice \
+    glpk &&\
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
     pip install -U pip pudb strsimpy
 
