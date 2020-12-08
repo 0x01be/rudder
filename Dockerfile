@@ -63,6 +63,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     qt5-qtbase-x11 \
     qt5-qtdeclarative \
     qt5-qtxmlpatterns \
+    qt5-qtmultimedia \
     qt5-qtsvg \
     qt5-qttools \
     qt5-qtwayland \
