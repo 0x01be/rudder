@@ -65,7 +65,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     qt5-qtxmlpatterns \
     qt5-qtsvg \
     qt5-qttools \
-    qt5-wayland \
+    qt5-qtwayland \
     mesa-dri-swrast \
     spdlog \
     gdb \
