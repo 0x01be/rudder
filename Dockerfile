@@ -115,7 +115,7 @@ ENV TARGET_DIR=${WORKSPACE}/caravel \
 
 RUN git clone --depth 1 --branch  main   https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} &&\
     git clone --depth 1 --branch master  https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make && make install &&\
-    rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin \
+    rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd &&\
