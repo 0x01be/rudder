@@ -101,7 +101,8 @@ COPY --from=magic /opt/magic/ /opt/magic/
 COPY ./.local/ ${WORKSPACE}/.local/
 COPY ./.config/ ${WORKSPACE}/.config/
 
-ENV PDK_ROOT=/opt/pdk
+ENV PDK_ROOT=/opt/pdk \
+    OPENLANE_ROOT=/opt/openlane
 
 ENV TARGET_DIR=${WORKSPACE}/caravel \
     OUT_DIR=${WORKSPACE}/caravel \
@@ -113,14 +114,13 @@ ENV TARGET_DIR=${WORKSPACE}/caravel \
     MAGIC_TECH=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.tech \
     MAGTYPE=mag
 
-RUN git clone --depth 1 --branch  main   https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} &&\
-    git clone --depth 1 --branch master  https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make && make install &&\
+RUN git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} &&\
+    git clone --depth 1 --branch mpw-one-a https://github.com/efabless/openlane.git ${OPENLANE_ROOT} &&\
+    git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
     rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
-    sed -i.bak 's/ash/bash/g' /etc/passwd &&\
-    rm -rf /tmp/*
-
+    sed -i.bak 's/ash/bash/g' /etc/passwd
 
 USER ${USER}
 WORKDIR ${WORKSPACE}

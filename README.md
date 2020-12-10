@@ -8,6 +8,7 @@ Learn, share and teach ASIC design using open tools and technologies:
  - [magic](http://opencircuitdesign.com/magic/)
  - [qflow](http://opencircuitdesign.com/qflow/)
  - [netgen](http://opencircuitdesign.com/netgen/)
+ - [openlane](https://github.com/efabless/openlane/)
  - [openroad](https://theopenroadproject.org/)
  - [klayout](https://www.klayout.de/)
  - [xschem](http://repo.hu/projects/xschem/)
