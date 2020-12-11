@@ -28,6 +28,11 @@ Learn, share and teach ASIC design using open tools and technologies:
  - [0x01be/rudder](https://hub.docker.com/r/0x01be/rudder/)
  - [0x01be/openpdks](https://hub.docker.com/r/0x01be/openpdks/) 
 
+
+### Git repositories
+
+ - [efabless/caravel](https://github.com/efabless/caravel)
+
 ## Usage
 
 ### Install or update
@@ -37,18 +42,16 @@ docker pull 0x01be/rudder
 docker pull 0x01be/openpdks:mpw-one-a
 ```
 
-### Prepare or reset [PDK](https://skywater-pdk.readthedocs.io/)
+### Prepare [PDK](https://skywater-pdk.readthedocs.io/)
 
 ```
-docker volume rm pdk
 docker volume create pdk
 docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:mpw-one-a sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
 ```
 
-### Prepare or reset [Harness](https://github.com/efabless/caravel/)
+### Prepare [Harness](https://github.com/efabless/caravel/)
 
 ```
-docker volume rm caravel
 docker volume create caravel
 docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "apk add git make gzip && git clone --branch mpw-one-a --recursive https://github.com/efabless/caravel.git /opt/caravel && ln -s /home/xpra/precheck /opt/caravel/checks && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
 ```
