@@ -76,9 +76,21 @@ Klayout should be available at http://localhost:10001/
 
 ![KLayout screenshot](screenshots/klayout.png)
 
-### Run DRC, consistency tests and the [eFabless precheck](https://github.com/efabless/open_mpw_precheck)
+### DRC
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash -c "drc && consistency && check"
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder drc
+```
+
+### Consistency
+
+```
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder consistency
+```
+
+### [eFabless precheck](https://github.com/efabless/open_mpw_precheck)
+
+```
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder check
 ```
 
