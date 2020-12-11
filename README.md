@@ -34,15 +34,15 @@ Learn, share and teach ASIC design using open tools and technologies:
 
 ```
 docker pull 0x01be/rudder
+docker pull 0x01be/openpdks:mpw-one-a
 ```
 
 ### Prepare or reset [PDK](https://skywater-pdk.readthedocs.io/)
 
 ```
-docker pull 0x01be/openpdks:timedwards
 docker volume rm pdk
 docker volume create pdk
-docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:timedwards sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
+docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:mpw-one-a sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
 ```
 
 ### Prepare or reset [Harness](https://github.com/efabless/caravel/)
