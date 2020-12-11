@@ -98,6 +98,7 @@ COPY --from=yosys /opt/yosys/ /opt/yosys/
 COPY --from=iverilog /opt/iverilog/ /opt/iverilog/
 COPY --from=verilator /opt/verilator/ /opt/verilator/
 COPY --from=magic /opt/magic/ /opt/magic/
+
 COPY ./.local/ ${WORKSPACE}/.local/
 COPY ./.config/ ${WORKSPACE}/.config/
 
@@ -114,10 +115,9 @@ ENV TARGET_DIR=${WORKSPACE}/caravel \
     MAGIC_TECH=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.tech \
     MAGTYPE=mag
 
-RUN git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} &&\
-    git clone --depth 1 --branch mpw-one-a https://github.com/efabless/openlane.git ${OPENLANE_ROOT} &&\
+RUN git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
+    git clone --depth 1 --branch mpw-one-a https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
     git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
-    rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd
