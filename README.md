@@ -53,7 +53,7 @@ docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:mpw-one-a sh -c "mv /opt/sky
 
 ```
 docker volume create caravel
-docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "apk add git make gzip && git clone --branch mpw-one-a --recursive https://github.com/efabless/caravel.git /opt/caravel && ln -s /home/xpra/precheck /opt/caravel/checks && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
+docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clone --branch mpw-one-a --recursive https://github.com/efabless/caravel.git /opt/caravel && ln -s /home/xpra/precheck /opt/caravel/checks && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
 ```
 
 ### View in Magic
