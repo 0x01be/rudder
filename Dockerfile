@@ -17,22 +17,22 @@ FROM 0x01be/magic:xpra-threads as magic
 
 FROM 0x01be/xpra
 
-COPY --from=opendp /opt/* /opt/opendp/
-COPY --from=ops /opt/* /opt/ops/
-COPY --from=padring /opt/* /opt/padring/
-COPY --from=replace /opt/* /opt/replace/
+COPY --from=opendp /opt/* /opt/
+COPY --from=ops /opt/* /opt/
+COPY --from=padring /opt/* /opt/
+COPY --from=replace /opt/* /opt/
 COPY --from=triton /opt/* /opt/triton/
-COPY --from=iverilog /opt/* /opt/iverilog/
-COPY --from=verilator /opt/* /opt/verilator/
-COPY --from=yosys /opt/* /opt/yosys/
-COPY --from=gtkwave /opt/* /opt/gtkwave/
-COPY --from=qflow /opt/* /opt/qflow/
-COPY --from=qrouter /opt/* /opt/qrouter/
-COPY --from=netgen /opt/* /opt/netgen/
-COPY --from=klayout /opt/* /opt/klayout/
-COPY --from=openroad /opt/* /opt/openroad/
-COPY --from=xschem /opt/* /opt/xschem/
-COPY --from=magic /opt/* /opt/magic/
+COPY --from=iverilog /opt/* /opt/
+COPY --from=verilator /opt/* /opt/
+COPY --from=yosys /opt/* /opt/y
+COPY --from=gtkwave /opt/* /opt/
+COPY --from=qflow /opt/* /opt/
+COPY --from=qrouter /opt/* /opt/
+COPY --from=netgen /opt/* /opt/
+COPY --from=klayout /opt/* /opt/
+COPY --from=openroad /opt/* /opt/
+COPY --from=xschem /opt/* /opt/
+COPY --from=magic /opt/* /opt/
 
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
