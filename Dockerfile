@@ -2,13 +2,13 @@ FROM 0x01be/opendp as opendp
 FROM 0x01be/ops as ops
 FROM 0x01be/padring as padring
 FROM 0x01be/replace as replace
+FROM 0x01be/qrouter as qrouter
 FROM 0x01be/triton as triton
 FROM 0x01be/iverilog as iverilog
 FROM 0x01be/verilator as verilator
 FROM 0x01be/yosys as yosys
 FROM 0x01be/gtkwave:xpra as gtkwave
 FROM 0x01be/qflow:xpra as qflow
-FROM 0x01be/qrouter as qrouter
 FROM 0x01be/netgen:xpra as netgen
 FROM 0x01be/klayout:xpra as klayout
 FROM 0x01be/openroad:xpra as openroad
