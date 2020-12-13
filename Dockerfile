@@ -31,8 +31,8 @@ COPY --from=qrouter /opt/* /opt/qrouter/
 COPY --from=netgen /opt/* /opt/netgen/
 COPY --from=klayout /opt/* /opt/klayout/
 COPY --from=openroad /opt/* /opt/openroad/
-COPY --from=xschem /opt/x* /opt/xschem/
-COPY --from=magic /opt/magic/ /opt/magic/
+COPY --from=xschem /opt/* /opt/xschem/
+COPY --from=magic /opt/* /opt/magic/
 
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
