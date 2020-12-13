@@ -1,20 +1,50 @@
-FROM 0x01be/gtkwave:xpra as gtkwave
-FROM 0x01be/netgen:xpra as netgen
-FROM 0x01be/qflow:xpra as qflow
-FROM 0x01be/klayout:xpra as klayout
-FROM 0x01be/openroad:xpra as openroad
-FROM 0x01be/xschem:xpra as xschem
 FROM 0x01be/opendp as opendp
 FROM 0x01be/ops as ops
 FROM 0x01be/padring as padring
 FROM 0x01be/replace as replace
 FROM 0x01be/triton as triton
-FROM 0x01be/yosys as yosys
 FROM 0x01be/iverilog as iverilog
 FROM 0x01be/verilator as verilator
+FROM 0x01be/yosys as yosys
+FROM 0x01be/gtkwave:xpra as gtkwave
+FROM 0x01be/qflow:xpra as qflow
+FROM 0x01be/qrouter as qrouter
+FROM 0x01be/netgen:xpra as netgen
+FROM 0x01be/klayout:xpra as klayout
+FROM 0x01be/openroad:xpra as openroad
+FROM 0x01be/xschem:xpra as xschem
 FROM 0x01be/magic:xpra-threads as magic
 
 FROM 0x01be/xpra
+
+COPY --from=opendp /opt/* /opt/opendp/
+COPY --from=ops /opt/* /opt/ops/
+COPY --from=padring /opt/* /opt/padring/
+COPY --from=replace /opt/* /opt/replace/
+COPY --from=triton /opt/* /opt/triton/
+COPY --from=iverilog /opt/* /opt/iverilog/
+COPY --from=verilator /opt/* /opt/verilator/
+COPY --from=yosys /opt/* /opt/yosys/
+COPY --from=gtkwave /opt/* /opt/gtkwave/
+COPY --from=qflow /opt/* /opt/qflow/
+COPY --from=qrouter /opt/* /opt/qrouter/
+COPY --from=netgen /opt/* /opt/netgen/
+COPY --from=klayout /opt/* /opt/klayout/
+COPY --from=openroad /opt/* /opt/openroad/
+COPY --from=xschem /opt/x* /opt/xschem/
+COPY --from=magic /opt/magic/ /opt/magic/
+
+ENV PDK_ROOT=/opt/pdk \
+    OPENLANE_ROOT=/opt/openlane
+ENV TARGET_DIR=${WORKSPACE}/caravel \
+    OUT_DIR=${WORKSPACE}/caravel \
+    DESIGN_NAME=caravel \
+    SUB_DESIGN_NAME=mprj \
+    SCRIPTS_ROOT=${WORKSPACE}/precheck \
+    PDKPATH=${PDK_ROOT}/sky130A \
+    MAGIC_MAGICRC=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc \
+    MAGIC_TECH=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.tech \
+    MAGTYPE=mag
 
 RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     git \
@@ -81,46 +111,15 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     ngspice \
     glpk &&\
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
-    pip install -U pip pudb strsimpy
-
-COPY --from=gtkwave /opt/gtkwave/ /opt/gtkwave/
-COPY --from=netgen /opt/netgen/ /opt/netgen/
-COPY --from=qflow /opt/qflow/ /opt/qflow/
-COPY --from=klayout /opt/klayout/ /opt/klayout/
-COPY --from=openroad /opt/openroad/ /opt/openroad/
-COPY --from=xschem /opt/xschem/ /opt/xschem/
-COPY --from=opendp /opt/opendp/ /opt/opendp/
-COPY --from=ops /opt/ops/ /opt/ops/
-COPY --from=padring /opt/padring/ /opt/padring/
-COPY --from=replace /opt/replace/ /opt/replace/
-COPY --from=triton /opt/triton/ /opt/triton/
-COPY --from=yosys /opt/yosys/ /opt/yosys/
-COPY --from=iverilog /opt/iverilog/ /opt/iverilog/
-COPY --from=verilator /opt/verilator/ /opt/verilator/
-COPY --from=magic /opt/magic/ /opt/magic/
-
-COPY ./.local/ ${WORKSPACE}/.local/
-COPY ./.config/ ${WORKSPACE}/.config/
-
-ENV PDK_ROOT=/opt/pdk \
-    OPENLANE_ROOT=/opt/openlane
-
-ENV TARGET_DIR=${WORKSPACE}/caravel \
-    OUT_DIR=${WORKSPACE}/caravel \
-    DESIGN_NAME=caravel \
-    SUB_DESIGN_NAME=mprj \
-    SCRIPTS_ROOT=${WORKSPACE}/precheck \
-    PDKPATH=${PDK_ROOT}/sky130A \
-    MAGIC_MAGICRC=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.magicrc \
-    MAGIC_TECH=${PDK_ROOT}/sky130A/libs.tech/magic/sky130A.tech \
-    MAGTYPE=mag
-
-RUN git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
+    pip install -U pip pudb strsimpy 77\
+    git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
     git clone --depth 1 --branch mpw-one-a https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
     git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd
+
+COPY ./.* ${WORKSPACE}/
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
