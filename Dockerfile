@@ -17,22 +17,23 @@ FROM 0x01be/magic:xpra-threads as magic
 
 FROM 0x01be/xpra
 
-COPY --from=opendp /opt/* /opt/
-COPY --from=ops /opt/* /opt/
-COPY --from=padring /opt/* /opt/
-COPY --from=replace /opt/* /opt/
-COPY --from=triton /opt/* /opt/triton/
-COPY --from=iverilog /opt/* /opt/
-COPY --from=verilator /opt/* /opt/
-COPY --from=yosys /opt/* /opt/
-COPY --from=gtkwave /opt/* /opt/
-COPY --from=qflow /opt/* /opt/
-COPY --from=qrouter /opt/* /opt/
-COPY --from=netgen /opt/* /opt/
-COPY --from=klayout /opt/* /opt/
-COPY --from=openroad /opt/* /opt/
-COPY --from=xschem /opt/* /opt/
-COPY --from=magic /opt/* /opt/
+COPY --from=opendp /opt/opendp/ /opt/opendp/
+COPY --from=ops /opt/ops/ /opt/ops/
+COPY --from=padring /opt/padring/ /opt/padring/
+COPY --from=replace /opt/replace/ /opt/replace/
+COPY --from=triton /opt/triton/ /opt/triton/
+COPY --from=iverilog /opt/iverilog/ /opt/iverilog/
+COPY --from=verilator /opt/verilator/ /opt/verilator/
+COPY --from=yosys /opt/yosys/ /opt/yosys/
+COPY --from=gtkwave /opt/gtkwave/ /opt/gtkwave/
+COPY --from=qflow /opt/qflow/ /opt/qflow/
+COPY --from=qrouter /opt/qrouter/ /opt/qrouter/
+COPY --from=netgen /opt/netgen/ /opt/netgen/
+COPY --from=klayout /opt/klayout/ /opt/klayout/
+COPY --from=openroad /opt/openload/ /opt/openroad/
+COPY --from=xschem /opt/xschem/ /opt/xschem/
+COPY --from=xschem /opt/gaw/ /opt/gaw/
+COPY --from=magic /opt/magic/ /opt/magic/
 
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
@@ -125,7 +126,7 @@ COPY .config/ ${WORKSPACE}/.local/
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
-ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/ghdl/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin/:${WORKSPACE}/.local/bin/ \
+ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/qrouter/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin:/opt/gaw/bin:${WORKSPACE}/.local/bin \
     PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/klayout/lib/python3.8/site-packages/ \
     DOCKER_HOST=tcp://docker:2375 \
     COMMAND="xfce4-terminal"
