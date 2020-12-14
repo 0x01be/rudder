@@ -127,7 +127,7 @@ COPY .profile ${WORKSPACE}/.profile
 COPY .bashrc ${WORKSPACE}/.bashrc
 
 USER ${USER}
-WORKDIR ${WORKSPACE}
+WORKDIR ${TARGET_DIR}
 ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/qrouter/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin:/opt/gaw/bin:${WORKSPACE}/.local/bin \
     PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/klayout/lib/python3.8/site-packages/ \
     DOCKER_HOST=tcp://docker:2375 \
