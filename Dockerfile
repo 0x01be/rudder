@@ -56,6 +56,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     tmux \
     docker-cli \
     coreutils \
+    xz \
     tar \
     gzip \
     wget \
