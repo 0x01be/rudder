@@ -35,6 +35,11 @@ COPY --from=xschem /opt/xschem/ /opt/xschem/
 COPY --from=xschem /opt/gaw/ /opt/gaw/
 COPY --from=magic /opt/magic/ /opt/magic/
 
+COPY .local/ ${WORKSPACE}/.local/
+COPY .config/ ${WORKSPACE}/.config/
+COPY .profile ${WORKSPACE}/.profile
+COPY .bashrc ${WORKSPACE}/.bashrc
+
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
 ENV TARGET_DIR=${WORKSPACE}/caravel \
@@ -120,11 +125,6 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd
-
-COPY .local/ ${WORKSPACE}/.local/
-COPY .config/ ${WORKSPACE}/.config/
-COPY .profile ${WORKSPACE}/.profile
-COPY .bashrc ${WORKSPACE}/.bashrc
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
