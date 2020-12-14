@@ -122,7 +122,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     sed -i.bak 's/ash/bash/g' /etc/passwd
 
 COPY .local/ ${WORKSPACE}/.local/
-COPY .config/ ${WORKSPACE}/.local/
+COPY .config/ ${WORKSPACE}/.config/
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
