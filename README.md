@@ -59,7 +59,7 @@ docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clo
 ### Run scripts
 
 ```
-docker run --rm rudder -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
 ```
 
 Or in your browser:
