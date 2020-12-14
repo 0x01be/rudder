@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd ${WORKSPACE}/precheck && python3 open_mpw_prechecker.py --target_path ${TARGET_DIR} --pdk_root ${PDK_ROOT}
+cd ${SCRIPTS_ROOT} && python3 open_mpw_prechecker.py --target_path ${TARGET_DIR} --pdk_root ${PDK_ROOT}
 
