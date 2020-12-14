@@ -120,7 +120,8 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd
 
-COPY ./.* ${WORKSPACE}/
+COPY .local/ ${WORKSPACE}/.local/
+COPY .config/ ${WORKSPACE}/.local/
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
