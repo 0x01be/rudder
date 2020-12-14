@@ -56,23 +56,39 @@ docker volume create caravel
 docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clone --branch mpw-one-a --recursive https://github.com/efabless/caravel.git /opt/caravel && ln -s /home/xpra/checks /opt/caravel/checks && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
 ```
 
+### Run scripts
+
+```
+docker run --rm rudder -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
+```
+
+Or in your browser:
+
+```
+docker run --rm --name rudder -ti -p 10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
+```
+
+Bash should be available at http://localhost:10000/
+
+![Bash screenshot](screenshots/bash.png)
+
 ### View in Magic
 
 ```
-docker run --rm --name magic -ti -p 10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
+docker run --rm --name magic -ti -p 10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
 ```
 
-Magic should be available at http://localhost:10000/
+Magic should be available at http://localhost:10001/
 
 ![Magic screenshot](screenshots/magic.png)
 
 ### View in KLayout
 
 ```
-docker run --rm --name klayout -ti -p 10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
+docker run --rm --name klayout -ti -p 10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
 ```
 
-Klayout should be available at http://localhost:10001/
+Klayout should be available at http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
 
