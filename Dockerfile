@@ -123,6 +123,8 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
 
 COPY .local/ ${WORKSPACE}/.local/
 COPY .config/ ${WORKSPACE}/.config/
+COPY .profile ${WORKSPACE}/.profile
+COPY .bashrc ${WORKSPACE}/.bashrc
 
 USER ${USER}
 WORKDIR ${WORKSPACE}
