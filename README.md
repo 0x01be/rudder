@@ -84,42 +84,51 @@ Or in your browser:
 docker run --rm -d --name rudder --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
 ```
 
-Bash should be available at http://localhost:10000/
+Open http://localhost:10000/
 
 ![Bash screenshot](screenshots/bash.png)
 
-### View in Magic
+### Magic
 
 ```
 docker run --rm -d --name magic -p 127.0.0.1:10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
 ```
 
-Magic should be available at http://localhost:10001/
+Open http://localhost:10001/
 
 ![Magic screenshot](screenshots/magic.png)
 
-### View in KLayout
+### KLayout
 
 ```
 docker run --rm -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
 ```
 
-Klayout should be available at http://localhost:10002/
+Open http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
+
+### [Geany](https://www.geany.org/)
+
+```
+docker run --rm -d --name geany -p 127.0.0.1:10003:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=geany 0x01be/rudder
+```
+
+Open http://localhost:10003/
+
+![Geany screenshot](screenshots/geany.png)
+
 
 ### Update
 
 ```
-docker pull 0x01be/sdp
 docker pull 0x01be/rudder
-docker pull 0x01be/openpdks:1.0.85
 ```
 
 ### Uninstall
 
 ```
-docker stop docker rudder magic klayout
+docker stop docker rudder magic klayout geany
 docker volume rm pdk caravel
 docker rmi 0x01be/sdp 0x01be/rudder 0x01be/openpdks:1.0.85
 ```
