@@ -1,4 +1,5 @@
 #!/bin/bash
 
+cd ${TARGET_DIR} && make uncompress
 cd ${TARGET_DIR}/mag && magic -noconsole -dnull -T ${MAGIC_TECH} -rcfile ${SCRIPTS_ROOT}/drc_checks/magic_drc_check.tcl </dev/null
 
