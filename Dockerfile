@@ -26,14 +26,14 @@ COPY --from=iverilog /opt/iverilog/ /opt/iverilog/
 COPY --from=verilator /opt/verilator/ /opt/verilator/
 COPY --from=yosys /opt/yosys/ /opt/yosys/
 COPY --from=gtkwave /opt/gtkwave/ /opt/gtkwave/
-COPY --from=qflow /opt/qflow/ /opt/qflow/
 COPY --from=qrouter /opt/qrouter/ /opt/qrouter/
 COPY --from=netgen /opt/netgen/ /opt/netgen/
-COPY --from=klayout /opt/klayout/ /opt/klayout/
-COPY --from=openroad /opt/openroad/ /opt/openroad/
 COPY --from=xschem /opt/xschem/ /opt/xschem/
 COPY --from=xschem /opt/gaw/ /opt/gaw/
+COPY --from=klayout /opt/klayout/ /opt/klayout/
 COPY --from=magic /opt/magic/ /opt/magic/
+COPY --from=qflow /opt/qflow/ /opt/qflow/
+COPY --from=openroad /opt/openroad/ /opt/openroad/
 
 COPY .local/ ${WORKSPACE}/.local/
 COPY .config/ ${WORKSPACE}/.config/
