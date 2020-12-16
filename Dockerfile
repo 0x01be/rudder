@@ -63,6 +63,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     wget \
     curl \
     expat \
+    perl-utils \
     python3 \
     python3-tkinter \
     py3-yaml \
