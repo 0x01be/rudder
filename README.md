@@ -25,6 +25,7 @@ Learn, share and teach ASIC design using open tools and technologies:
 
 ### Docker images
 
+ - [0x01be/sdp](https://hub.docker.com/r/0x01be/sdp/)
  - [0x01be/rudder](https://hub.docker.com/r/0x01be/rudder/)
  - [0x01be/openpdks](https://hub.docker.com/r/0x01be/openpdks/) 
 
@@ -38,25 +39,42 @@ Learn, share and teach ASIC design using open tools and technologies:
 ### Install or update
 
 ```
+docker pull 0x01be/sdp
 docker pull 0x01be/rudder
 docker pull 0x01be/openpdks:1.0.85
 ```
 
-### Prepare [PDK](https://skywater-pdk.readthedocs.io/)
+### Expose the docker unix socket on port 2375
 
 ```
-docker volume create pdk
-docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.85 sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
+docker run --rm -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock 0x01be/sdp
 ```
 
-### Prepare [Harness](https://github.com/efabless/caravel/)
+### Setup [PDK](https://skywater-pdk.readthedocs.io/) and [Harness](https://github.com/efabless/caravel/)
 
 ```
-docker volume create caravel
-docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clone --branch mpw-one-b --recursive https://github.com/efabless/caravel.git /opt/caravel && ln -s /home/xpra/checks /opt/caravel/checks && chown -R xpra:xpra /opt/caravel && cd /opt/caravel && make uncompress"
+docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder setup
 ```
 
-### Run scripts
+### DRC
+
+```
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder drc
+```
+
+### Consistency
+
+```
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder consistency
+```
+
+### [eFabless precheck](https://github.com/efabless/open_mpw_precheck)
+
+```
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder check
+```
+
+### Bash
 
 ```
 docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
@@ -91,22 +109,4 @@ docker run --rm --name klayout -ti -p 10002:10000 -v pdk:/opt/pdk -v caravel:/ho
 Klayout should be available at http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
-
-### DRC
-
-```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder drc
-```
-
-### Consistency
-
-```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder consistency
-```
-
-### [eFabless precheck](https://github.com/efabless/open_mpw_precheck)
-
-```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder check
-```
 
