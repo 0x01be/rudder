@@ -1,6 +1,6 @@
 # Rudder
 
-Learn, share and teach ASIC design using open tools and technologies:
+Learn, share and collaborate on ASIC design using open tools and technologies:
 
  - [skywater-pdk](https://skywater-pdk.readthedocs.io/)
  - [open_pdks](http://www.opencircuitdesign.com/open_pdks/)
