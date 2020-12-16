@@ -56,13 +56,19 @@ docker run -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/
 docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder setup
 ```
 
+### Make project
+
+```
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder make
+```
+
 ### DRC
 
 ```
 docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder drc
 ```
 
-### Consistency
+### Consistency check
 
 ```
 docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder consistency
