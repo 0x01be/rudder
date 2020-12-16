@@ -44,10 +44,10 @@ docker pull 0x01be/rudder
 docker pull 0x01be/openpdks:1.0.85
 ```
 
-### Expose the [API](https://docs.docker.com/engine/api/v1.41/) on port 2375
+### Expose the docker [API](https://docs.docker.com/engine/api/v1.41/) on port 2375
 
 ```
-docker run -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock 0x01be/sdp
+docker run --rm -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock 0x01be/sdp
 ```
 
 ### Setup [PDK](https://skywater-pdk.readthedocs.io/) and [Harness](https://github.com/efabless/caravel/)
@@ -89,7 +89,7 @@ docker run --rm -ti --link docker -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 
 Or in your browser:
 
 ```
-docker run -d --name rudder --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
+docker run --rm -d --name rudder --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
 ```
 
 Bash should be available at http://localhost:10000/
@@ -99,7 +99,7 @@ Bash should be available at http://localhost:10000/
 ### View in Magic
 
 ```
-docker run -d --name magic -p 127.0.0.1:10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
+docker run --rm -d --name magic -p 127.0.0.1:10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
 ```
 
 Magic should be available at http://localhost:10001/
@@ -109,7 +109,7 @@ Magic should be available at http://localhost:10001/
 ### View in KLayout
 
 ```
-docker run -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
+docker run --rm -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
 ```
 
 Klayout should be available at http://localhost:10002/
