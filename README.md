@@ -47,7 +47,7 @@ docker pull 0x01be/openpdks:1.0.85
 ### Expose the docker unix socket on port 2375
 
 ```
-docker run --rm -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock 0x01be/sdp
+docker run -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock 0x01be/sdp
 ```
 
 ### Setup [PDK](https://skywater-pdk.readthedocs.io/) and [Harness](https://github.com/efabless/caravel/)
