@@ -53,7 +53,7 @@ docker run -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/
 ### Setup [PDK](https://skywater-pdk.readthedocs.io/) and [Harness](https://github.com/efabless/caravel/)
 
 ```
-docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder setup
+docker run --rm -ti -u root --link docker -v caravel:/opt/caravel 0x01be/rudder setup
 ```
 
 ### Make project
@@ -83,13 +83,13 @@ docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder 
 ### Bash
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
+docker run --rm -ti --link docker -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
 ```
 
 Or in your browser:
 
 ```
-docker run -d --name rudder -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
+docker run -d --name rudder --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
 ```
 
 Bash should be available at http://localhost:10000/
