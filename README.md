@@ -48,12 +48,12 @@ docker run --rm -d --name docker -v /var/run/docker.sock:/var/run/docker.sock 0x
 docker run --rm -ti --link docker 0x01be/rudder setup
 ```
 
-It takes up to 10GB of disk space and 20 minutes to download.
+It takes up to 10GB of disk space and 20 minutes to download at 2MB/s.
 
-### Make project
+### Make
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder make
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder make ship manifest
 ```
 
 ### DRC
