@@ -126,7 +126,7 @@ COPY .config/ ${WORKSPACE}/.config/
 COPY .profile ${WORKSPACE}/.profile
 COPY .bashrc ${WORKSPACE}/.bashrc
 
-RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc
+RUN chown -R ${USER}:${USER} ${WORKSPACE}/{.local,.config,.profile,.bashrc}
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
