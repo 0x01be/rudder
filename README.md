@@ -48,6 +48,8 @@ docker run --rm -d --name docker -v /var/run/docker.sock:/var/run/docker.sock 0x
 docker run --rm -ti --link docker 0x01be/rudder setup
 ```
 
+It takes up 10GB of disk space and 20 minutes to download.
+
 ### Make project
 
 ```
