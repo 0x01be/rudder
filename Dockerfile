@@ -35,11 +35,6 @@ COPY --from=magic /opt/magic/ /opt/magic/
 COPY --from=qflow /opt/qflow/ /opt/qflow/
 COPY --from=openroad /opt/openroad/ /opt/openroad/
 
-COPY .local/ ${WORKSPACE}/.local/
-COPY .config/ ${WORKSPACE}/.config/
-COPY .profile ${WORKSPACE}/.profile
-COPY .bashrc ${WORKSPACE}/.bashrc
-
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
 ENV TARGET_DIR=${WORKSPACE}/caravel \
@@ -123,8 +118,15 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     git clone --depth 1 --branch mpw-one-b https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
     git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
-    chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
+r   chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd
+
+COPY .local/ ${WORKSPACE}/.local/
+COPY .config/ ${WORKSPACE}/.config/
+COPY .profile ${WORKSPACE}/.profile
+COPY .bashrc ${WORKSPACE}/.bashrc
+
+RUN chown -R ${USER}:${USER} ${WORKSPACE}/.{local,config,profile,bashrc}
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
