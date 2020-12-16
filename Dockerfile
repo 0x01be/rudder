@@ -120,7 +120,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
     pip install -U pip pudb strsimpy &&\
     git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
-    git clone --depth 1 --branch mpw-one-a https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
+    git clone --depth 1 --branch mpw-one-b https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
     git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
     chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
