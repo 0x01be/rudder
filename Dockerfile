@@ -118,7 +118,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     git clone --depth 1 --branch mpw-one-b https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
     git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
     mkdir -p ${TARGET_DIR} ${PDK_ROOT} &&\
-r   chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
+    chown -R ${USER}:${USER} ${WORKSPACE} ${PDK_ROOT} &&\
     sed -i.bak 's/ash/bash/g' /etc/passwd
 
 COPY .local/ ${WORKSPACE}/.local/
