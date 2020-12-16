@@ -36,14 +36,6 @@ Learn, share and collaborate on ASIC design using open tools and technologies:
 
 ## Usage
 
-### Install or update
-
-```
-docker pull 0x01be/sdp
-docker pull 0x01be/rudder
-docker pull 0x01be/openpdks:1.0.85
-```
-
 ### Expose the docker [API](https://docs.docker.com/engine/api/v1.41/)
 
 ```
@@ -115,4 +107,20 @@ docker run --rm -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v ca
 Klayout should be available at http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
+
+### Update
+
+```
+docker pull 0x01be/sdp
+docker pull 0x01be/rudder
+docker pull 0x01be/openpdks:1.0.85
+```
+
+### Uninstall
+
+```
+docker stop docker rudder magic klayout
+docker volume rm pdk caravel
+docker rmi 0x01be/sdp 0x01be/rudder 0x01be/openpdks:1.0.85
+```
 
