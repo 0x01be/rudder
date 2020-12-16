@@ -44,7 +44,7 @@ docker pull 0x01be/rudder
 docker pull 0x01be/openpdks:1.0.85
 ```
 
-### Expose the docker unix socket on port 2375
+### Expose the docker [API](https://docs.docker.com/engine/api/v1.41/) on port 2375
 
 ```
 docker run -d --name docker -p 127.0.0.1:2375:2375 -v /var/run/docker.sock:/var/run/docker.sock 0x01be/sdp
