@@ -89,7 +89,7 @@ docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder 
 Or in your browser:
 
 ```
-docker run --rm --name rudder -ti -p 10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
+docker run -d --name rudder -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
 ```
 
 Bash should be available at http://localhost:10000/
@@ -99,7 +99,7 @@ Bash should be available at http://localhost:10000/
 ### View in Magic
 
 ```
-docker run --rm --name magic -ti -p 10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
+docker run -d --name magic -p 127.0.0.1:10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
 ```
 
 Magic should be available at http://localhost:10001/
@@ -109,7 +109,7 @@ Magic should be available at http://localhost:10001/
 ### View in KLayout
 
 ```
-docker run --rm --name klayout -ti -p 10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
+docker run -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
 ```
 
 Klayout should be available at http://localhost:10002/
