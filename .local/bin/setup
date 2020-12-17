@@ -13,7 +13,7 @@ else
     echo "Creating pdk volume..." &&
     docker volume create pdk > /dev/null &&
     echo "Copying pdk files..." &&
-    docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.88 sh -c "cp -vR /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech && sed -i.bak -e '26d' /opt/pdk/sky130A/libs.tech/magic/sky130A.tech"
+    docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.85 sh -c "cp -vR /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
 fi
 
 echo "Preparing Caravel..."
