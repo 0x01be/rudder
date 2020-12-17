@@ -26,7 +26,7 @@ Learn, share and collaborate on ASIC design using open tools and technologies:
 ### Docker images
 
  - [0x01be/sdp](https://hub.docker.com/r/0x01be/sdp/)
- - [0x01be/rudder](https://hub.docker.com/r/0x01be/rudder/)
+ - [0x01be/rudder:mpw-one-b](https://hub.docker.com/r/0x01be/rudder/)
  - [0x01be/openpdks](https://hub.docker.com/r/0x01be/openpdks/) 
 
 
@@ -45,7 +45,7 @@ docker run --rm -d --name docker -v /var/run/docker.sock:/var/run/docker.sock 0x
 ### Setup [PDK](https://skywater-pdk.readthedocs.io/) and [Harness](https://github.com/efabless/caravel/)
 
 ```
-docker run --rm -ti --link docker 0x01be/rudder setup
+docker run --rm -ti --link docker 0x01be/rudder:mpw-one-b setup
 ```
 
 It takes up to 10GB of disk space and 20 minutes to download at 2MB/s.
@@ -53,43 +53,43 @@ It takes up to 10GB of disk space and 20 minutes to download at 2MB/s.
 If you already have a harness-derived project, you can specify its repository URL.
 
 ```
-docker run --rm -ti --link docker 0x01be/rudder setup https://github.com/hadirkhan10/caravel_ibtida_soc.git
+docker run --rm -ti --link docker 0x01be/rudder:mpw-one-b setup https://github.com/hadirkhan10/caravel_ibtida_soc.git
 ```
 
 ### Make
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder make ship manifest
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:mpw-one-b make ship manifest
 ```
 
 ### DRC
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder drc
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:mpw-one-b drc
 ```
 
 ### Consistency check
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder consistency
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:mpw-one-b consistency
 ```
 
 ### [eFabless precheck](https://github.com/efabless/open_mpw_precheck)
 
 ```
-docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder check
+docker run --rm -ti -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:mpw-one-b check
 ```
 
 ### Bash
 
 ```
-docker run --rm -ti --link docker -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder bash
+docker run --rm -ti --link docker -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:mpw-one-b bash
 ```
 
 Or in your browser:
 
 ```
-docker run --rm -d --name rudder --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder
+docker run --rm -d --name rudder:mpw-one-b --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:mpw-one-b
 ```
 
 Open http://localhost:10000/
@@ -99,7 +99,7 @@ Open http://localhost:10000/
 ### Magic
 
 ```
-docker run --rm -d --name magic -p 127.0.0.1:10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder
+docker run --rm -d --name magic -p 127.0.0.1:10001:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=m 0x01be/rudder:mpw-one-b
 ```
 
 Open http://localhost:10001/
@@ -109,7 +109,7 @@ Open http://localhost:10001/
 ### KLayout
 
 ```
-docker run --rm -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder
+docker run --rm -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=k 0x01be/rudder:mpw-one-b
 ```
 
 Open http://localhost:10002/
@@ -119,7 +119,7 @@ Open http://localhost:10002/
 ### [Geany](https://www.geany.org/)
 
 ```
-docker run --rm -d --name geany -p 127.0.0.1:10003:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=geany 0x01be/rudder
+docker run --rm -d --name geany -p 127.0.0.1:10003:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel -e COMMAND=geany 0x01be/rudder:mpw-one-b
 ```
 
 Open http://localhost:10003/
@@ -130,14 +130,14 @@ Open http://localhost:10003/
 ### Update
 
 ```
-docker pull 0x01be/rudder
+docker pull 0x01be/rudder:mpw-one-b
 ```
 
 ### Uninstall
 
 ```
-docker stop docker rudder magic klayout geany
+docker stop docker rudder:mpw-one-b magic klayout geany
 docker volume rm pdk caravel
-docker rmi 0x01be/sdp 0x01be/rudder 0x01be/openpdks:1.0.85
+docker rmi 0x01be/sdp 0x01be/rudder:mpw-one-b 0x01be/openpdks:1.0.85
 ```
 
