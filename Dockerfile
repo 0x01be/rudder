@@ -112,9 +112,10 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     geany \
     py3-pandas \
     ngspice \
-    glpk &&\
+    glpk \
+    openscad &&\
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
-    pip install -U pip pudb strsimpy &&\
+    pip install -U pip pudb strsimpy pip3 gds3xtrude klayout &&\
     git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
     git clone --depth 1 --branch mpw-one-b https://github.com/efabless/openlane.git ${OPENLANE_ROOT} && ln -s ${OPENLANE_ROOT} ${WORKSPACE}/openlane &&\
     git clone --depth 1 --branch master https://github.com/tcltk/tcllib.git /tmp/tcllib && cd /tmp/tcllib && ./configure --prefix=/usr && make install && rm -rf /tmp/* &&\
