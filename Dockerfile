@@ -13,7 +13,7 @@ FROM 0x01be/netgen:xpra as netgen
 FROM 0x01be/klayout:xpra as klayout
 FROM 0x01be/openroad:xpra as openroad
 FROM 0x01be/xschem:xpra as xschem
-FROM 0x01be/magic:xpra as magic
+FROM 0x01be/magic:xpra-threads as magic
 
 FROM 0x01be/xpra
 
