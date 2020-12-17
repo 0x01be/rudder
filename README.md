@@ -27,7 +27,7 @@ Learn, share and collaborate on ASIC design using open tools and technologies:
 
  - [0x01be/sdp](https://hub.docker.com/r/0x01be/sdp/)
  - [0x01be/rudder:mpw-one-b](https://hub.docker.com/r/0x01be/rudder/)
- - [0x01be/openpdks](https://hub.docker.com/r/0x01be/openpdks/) 
+ - [0x01be/openpdks:1.0.85](https://hub.docker.com/r/0x01be/openpdks/) 
 
 
 ### Git repositories
