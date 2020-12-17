@@ -127,8 +127,9 @@ COPY .local/ ${WORKSPACE}/.local/
 COPY .config/ ${WORKSPACE}/.config/
 COPY .profile ${WORKSPACE}/.profile
 COPY .bashrc ${WORKSPACE}/.bashrc
+ADD https://github.com/TobiasKaiser/sky130-3d-render/blob/main/sky130.layerstack ${WORKSPACE}/sky130.layerstack
 
-RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc
+RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc ${WORKSPACE}/sky130.layerstack
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
