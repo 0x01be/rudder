@@ -1,17 +1,27 @@
 #!/bin/bash
 
-echo "Creating docker volumes..."
-docker volume create pdk
-docker volume create caravel
-
 set -e
 
-: ${1?REPOSITORY?}
 REPOSITORY=${1:-https://github.com/efabless/caravel.git}
 
 echo "Preparing PDK files..."
-docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.85 sh -c "mv /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
+if 
+    docker volume inspect pdk 2> /dev/null > /dev/null
+then
+    echo "pdk volume found: leaving untouched"
+else
+    echo "Creating pdk volume..." &&
+    docker volume create pdk > /dev/null &&
+    echo "Copying pdk files..."
+    docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.88 sh -c "cp -vR /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
+fi
 
-echo "Preparing Caravel harness..."
-docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clone --depth 1 ${REPOSITORY} /opt/caravel && ln -s /home/xpra/checks /opt/caravel/checks && chown -R xpra:xpra /opt/caravel"
+echo "Preparing Caravel..."
+if 
+    docker volume inspect caravel 2> /dev/null > /dev/null
+then
+    echo "caravel volume found: leaving untouched"
+else
+    docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clone --depth 1 ${REPOSITORY} /opt/caravel && ln -s /home/xpra/checks /opt/caravel/checks && chown -R xpra:xpra /opt/caravel"
+fi
 
