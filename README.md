@@ -50,6 +50,12 @@ docker run --rm -ti --link docker 0x01be/rudder setup
 
 It takes up to 10GB of disk space and 20 minutes to download at 2MB/s.
 
+If you already have a harness-derived project, you can specify its repository URL.
+
+```
+docker run --rm -ti --link docker 0x01be/rudder setup https://github.com/hadirkhan10/caravel_ibtida_soc.git
+```
+
 ### Make
 
 ```
