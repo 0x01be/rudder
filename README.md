@@ -49,11 +49,7 @@ docker run --rm -ti --link docker 0x01be/rudder:3d setup
 
 It takes up to 10GB of disk space and 20 minutes to download at 2MB/s.
 
-If you already have a harness-derived project, you can specify its repository URL.
-
-```
-docker run --rm -ti --link docker 0x01be/rudder:3d setup https://github.com/hadirkhan10/caravel_ibtida_soc.git
-```
+If you already have a harness-derived project, you can specify its repository URL: `docker run --rm -ti --link docker 0x01be/rudder:3d setup https://github.com/hadirkhan10/caravel_ibtida_soc.git`
 
 ### Make
 
@@ -114,6 +110,10 @@ docker run --rm -d --name klayout -p 127.0.0.1:10002:10000 -v pdk:/opt/pdk -v ca
 Open http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
+
+You can render GDS2 files in [OpenSCAD](https://www.openscad.org/) thanks to [gds3xtrude](https://github.com/fsitok/gds3xtrude):
+
+![OpenSCAD screenshot](screenshots/openscad.png)
 
 ### [Geany](https://www.geany.org/)
 
