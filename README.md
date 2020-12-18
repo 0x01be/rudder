@@ -111,9 +111,10 @@ Open http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
 
-You can render GDS2 files in [OpenSCAD](https://www.openscad.org/) thanks to [gds3xtrude](https://github.com/fsitok/gds3xtrude):
+You can render GDS2 files in [OpenSCAD](https://www.openscad.org/) or [Blender](https://www.blender.org/) [gds3xtrude](https://github.com/fsitok/gds3xtrude):
 
 ![OpenSCAD screenshot](screenshots/openscad.png)
+![Blender screenshot](screenshots/blender.png)
 
 ### [Geany](https://www.geany.org/)
 
