@@ -84,7 +84,7 @@ docker run --rm -ti --link docker -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 
 Or in your browser:
 
 ```
-docker run --rm -d --name rudder:3d --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:3d
+docker run --rm -d --name rudder --link docker -p 127.0.0.1:10000:10000 -v pdk:/opt/pdk -v caravel:/home/xpra/caravel 0x01be/rudder:3d
 ```
 
 Open http://localhost:10000/
