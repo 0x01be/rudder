@@ -129,7 +129,8 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     cgal \
     qscintilla \
     opencsg \
-    lib3mf &&\
+    lib3mf \
+    blender &&\
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
     pip install -U pip pudb strsimpy gds3xtrude &&\
     git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
