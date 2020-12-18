@@ -15,6 +15,7 @@ FROM 0x01be/openroad:xpra as openroad
 FROM 0x01be/xschem:xpra as xschem
 FROM 0x01be/magic:xpra-threads as magic
 FROM 0x01be/openscad:xpra as openscad
+FROM 0x01be/gds2pov:xpra as gds2pov
 
 FROM 0x01be/xpra
 
@@ -36,6 +37,7 @@ COPY --from=magic /opt/magic/ /opt/magic/
 COPY --from=qflow /opt/qflow/ /opt/qflow/
 COPY --from=openroad /opt/openroad/ /opt/openroad/
 COPY --from=openscad /opt/openscad/ /opt/openscad/
+COPY --from=gds2pov /opt/gds2pov/ /opt/gds2pov/
 
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
@@ -145,6 +147,7 @@ USER ${USER}
 WORKDIR ${TARGET_DIR}
 ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/qrouter/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin:/opt/gaw/bin:/opt/openscad/bin:${WORKSPACE}/.local/bin \
     PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/klayout/lib/python3.8/site-packages/ \
+    LD_LIBRARY_PATH=/lib:/usr/lib:/opt/gds2pov/lib \
     DOCKER_HOST=tcp://docker:2375 \
     COMMAND="xfce4-terminal"
 
