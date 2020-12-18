@@ -109,7 +109,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     harfbuzz \
     mesa-dri-swrast \
     imagemagick \
-    font-config \
+    fontconfig \
     double-conversion \
     spdlog \
     gdb \
