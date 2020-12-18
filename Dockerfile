@@ -14,6 +14,7 @@ FROM 0x01be/klayout:xpra as klayout
 FROM 0x01be/openroad:xpra as openroad
 FROM 0x01be/xschem:xpra as xschem
 FROM 0x01be/magic:xpra-threads as magic
+FROM 0x01be/openscad:xpra as openscad
 
 FROM 0x01be/xpra
 
@@ -34,6 +35,7 @@ COPY --from=klayout /opt/klayout/ /opt/klayout/
 COPY --from=magic /opt/magic/ /opt/magic/
 COPY --from=qflow /opt/qflow/ /opt/qflow/
 COPY --from=openroad /opt/openroad/ /opt/openroad/
+COPY --from=openscad /opt/openscad/ /opt/openscad/
 
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
@@ -112,8 +114,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     geany \
     py3-pandas \
     ngspice \
-    glpk \
-    openscad &&\
+    glpk &&\
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
     pip install -U pip pudb strsimpy gds3xtrude &&\
     git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
