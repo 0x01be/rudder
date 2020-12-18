@@ -19,6 +19,6 @@ if
 then
     echo "caravel volume found: leaving untouched"
 else
-    docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder sh -c "git clone --depth 1 ${REPOSITORY} /opt/caravel && ln -s /home/xpra/checks /opt/caravel/checks && chown -R xpra:xpra /opt/caravel"
+    docker run --rm -ti -u root -v caravel:/opt/caravel 0x01be/rudder:3d sh -c "git clone --depth 1 ${REPOSITORY} /opt/caravel && ln -s /home/xpra/checks /opt/caravel/checks && chown -R xpra:xpra /opt/caravel"
 fi
 
