@@ -83,7 +83,9 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     m4 \
     glu \
     gmp \
+    glew \
     pcre \
+    mpfr \
     libgomp \
     libgnat \
     libxext \
@@ -93,6 +95,8 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     libjpeg \
     libxpm \
     libxt \
+    libzip \
+    libxml2 \
     gettext \
     qt5-qtbase \
     qt5-qtbase-x11 \
@@ -102,11 +106,16 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     qt5-qtsvg \
     qt5-qttools \
     qt5-qtwayland \
+    harfbuzz \
     mesa-dri-swrast \
+    imagemagick \
+    font-config \
+    double-conversion \
     spdlog \
     gdb \
     g++ \
-    libtool &&\
+    libtool \
+    boost &&\
     apk add --no-cache --virtual rudder-edge-runtime-dependencies \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
