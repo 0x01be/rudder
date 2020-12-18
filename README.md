@@ -111,9 +111,16 @@ Open http://localhost:10002/
 
 ![KLayout screenshot](screenshots/klayout.png)
 
-You can render GDS2 files in [OpenSCAD](https://www.openscad.org/) or [Blender](https://www.blender.org/) with [gds3xtrude](https://github.com/fsitok/gds3xtrude):
+### 3D
+
+You can render GDS2 files in [OpenSCAD](https://www.openscad.org/) or [Blender](https://www.blender.org/) with [gds3xtrude](https://github.com/fsitok/gds3xtrude).
+
+For OpenSCAD you can use the KLayout plugin:
 
 ![OpenSCAD screenshot](screenshots/openscad.png)
+
+For blender you can invoque gds3xtrude with the `--cad blender` argument from the bash example above:
+
 ![Blender screenshot](screenshots/blender.png)
 
 ### [Geany](https://www.geany.org/)
