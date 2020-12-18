@@ -143,7 +143,7 @@ RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPAC
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
-ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/qrouter/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin:/opt/gaw/bin:${WORKSPACE}/.local/bin \
+ENV PATH=${PATH}:/opt/netgen/bin:/opt/qflow/bin:/opt/qrouter/bin:/opt/magic/bin:/opt/klayout/bin:/opt/openroad/bin:/opt/opendp/bin:/opt/ops/bin:/opt/padring/bin:/opt/replace/bin:/opt/triton/bin:/opt/yosys/bin:/opt/iverilog/bin:/opt/verilator/bin:/opt/gtkwave/bin:/opt/xschem/bin:/opt/gaw/bin:/opt/openscad/bin:${WORKSPACE}/.local/bin \
     PYTHONPATH=/usr/lib/python3.8/site-packages/:/opt/klayout/lib/python3.8/site-packages/ \
     DOCKER_HOST=tcp://docker:2375 \
     COMMAND="xfce4-terminal"
