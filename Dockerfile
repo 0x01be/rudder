@@ -14,7 +14,6 @@ FROM 0x01be/klayout:xpra as klayout
 FROM 0x01be/openroad:xpra as openroad
 FROM 0x01be/xschem:xpra as xschem
 FROM 0x01be/magic:xpra-threads as magic
-FROM 0x01be/openscad:xpra as openscad
 
 FROM 0x01be/xpra
 
@@ -35,7 +34,6 @@ COPY --from=klayout /opt/klayout/ /opt/klayout/
 COPY --from=magic /opt/magic/ /opt/magic/
 COPY --from=qflow /opt/qflow/ /opt/qflow/
 COPY --from=openroad /opt/openroad/ /opt/openroad/
-COPY --from=openscad /opt/openscad/ /opt/openscad/
 
 ENV PDK_ROOT=/opt/pdk \
     OPENLANE_ROOT=/opt/openlane
@@ -128,9 +126,8 @@ COPY .local/ ${WORKSPACE}/.local/
 COPY .config/ ${WORKSPACE}/.config/
 COPY .profile ${WORKSPACE}/.profile
 COPY .bashrc ${WORKSPACE}/.bashrc
-ADD https://raw.githubusercontent.com/TobiasKaiser/sky130-3d-render/main/sky130.layerstack ${WORKSPACE}/sky130.layerstack
 
-RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc ${WORKSPACE}/sky130.layerstack
+RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
