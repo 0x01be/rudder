@@ -138,6 +138,6 @@ docker pull 0x01be/rudder
 ```
 docker stop docker rudder magic klayout geany
 docker volume rm pdk caravel
-docker rmi 0x01be/sdp 0x01be/rudder 0x01be/openpdks:1.0.89
+docker rmi 0x01be/sdp 0x01be/rudder 0x01be/openpdks:1.0.95
 ```
 
