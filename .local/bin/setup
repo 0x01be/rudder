@@ -10,7 +10,7 @@ if
 then
     echo "pdk volume found: leaving untouched"
 else
-    docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.89 sh -c "cp -vR /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
+    docker run --rm -ti -v pdk:/opt/pdk 0x01be/openpdks:1.0.95 sh -c "cp -vR /opt/skywater-pdk/* /opt/pdk/ && ln -s /opt/pdk/sky130A/libs.tech/magic /opt/pdk/sky130A/libs.tech/magic/current && ln -s /opt/pdk/sky130A/libs.tech /opt/pdk/libs.tech"
 fi
 
 echo "Preparing harness..."

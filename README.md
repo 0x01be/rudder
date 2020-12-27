@@ -27,7 +27,7 @@ Learn, share and collaborate on ASIC design using open tools and technologies:
 
  - [0x01be/sdp](https://hub.docker.com/r/0x01be/sdp/)
  - [0x01be/rudder:3d](https://hub.docker.com/r/0x01be/rudder/)
- - [0x01be/openpdks:1.0.89](https://hub.docker.com/r/0x01be/openpdks/) 
+ - [0x01be/openpdks:1.0.95](https://hub.docker.com/r/0x01be/openpdks/) 
 
 ### Git repositories
 
@@ -145,6 +145,6 @@ docker pull 0x01be/rudder:3d
 ```
 docker stop docker rudder magic klayout geany
 docker volume rm pdk caravel
-docker rmi 0x01be/sdp 0x01be/rudder:3d 0x01be/openpdks:1.0.89
+docker rmi 0x01be/sdp 0x01be/rudder:3d 0x01be/openpdks:1.0.95
 ```
 
