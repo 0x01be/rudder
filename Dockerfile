@@ -143,6 +143,9 @@ RUN apk add --no-cache --virtual 3d-dependencies \
     double-conversion \
     boost &&\
     apk add --no-cache --virtual 3d-edge-dependencies \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+    --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
     cgal \
     qscintilla \
     opencsg \
