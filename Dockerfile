@@ -85,9 +85,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     m4 \
     glu \
     gmp \
-    glew \
     pcre \
-    mpfr \
     libgomp \
     libgnat \
     libxext \
@@ -97,8 +95,6 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     libjpeg \
     libxpm \
     libxt \
-    libzip \
-    libxml2 \
     gettext \
     qt5-qtbase \
     qt5-qtbase-x11 \
@@ -108,16 +104,11 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     qt5-qtsvg \
     qt5-qttools \
     qt5-qtwayland \
-    harfbuzz \
     mesa-dri-swrast \
-    imagemagick \
-    fontconfig \
-    double-conversion \
     spdlog \
     gdb \
     g++ \
-    libtool \
-    boost &&\
+    libtool &&\
     apk add --no-cache --virtual rudder-edge-runtime-dependencies \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
@@ -125,12 +116,7 @@ RUN apk add --no-cache --virtual rudder-runtime-dependencies \
     geany \
     py3-pandas \
     ngspice \
-    glpk \
-    cgal \
-    qscintilla \
-    opencsg \
-    lib3mf \
-    blender &&\
+    glpk &&\
     ln -s /usr/lib/libtcl8.6.so /usr/lib/libtcl.so &&\
     pip install -U pip pudb strsimpy gds3xtrude &&\
     git clone --depth 1 --branch main https://github.com/efabless/open_mpw_precheck.git ${SCRIPTS_ROOT} && rm -rf /usr/local/bin && ln -s ${SCRIPTS_ROOT} /usr/local/bin &&\
@@ -146,7 +132,23 @@ COPY .profile ${WORKSPACE}/.profile
 COPY .bashrc ${WORKSPACE}/.bashrc
 ADD https://raw.githubusercontent.com/TobiasKaiser/sky130-3d-render/main/sky130.layerstack ${WORKSPACE}/sky130.layerstack
 
-RUN chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc ${WORKSPACE}/sky130.layerstack
+RUN apk add --no-cache --virtual 3d-dependencies \
+    glew \
+    mpfr \
+    libzip \
+    libxml2 \
+    harfbuzz \
+    imagemagick \
+    fontconfig \
+    double-conversion \
+    boost &&\
+    apk add --no-cache --virtual 3d-edge-dependencies \
+    cgal \
+    qscintilla \
+    opencsg \
+    lib3mf \
+    blender &&\
+    chown -R ${USER}:${USER} ${WORKSPACE}/.local ${WORKSPACE}/.config ${WORKSPACE}/.profile ${WORKSPACE}/.bashrc ${WORKSPACE}/sky130.layerstack
 
 USER ${USER}
 WORKDIR ${TARGET_DIR}
